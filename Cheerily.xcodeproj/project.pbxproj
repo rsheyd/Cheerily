@@ -1,0 +1,413 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		304313D31EB06FBB002456C6 /* WebClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304313D21EB06FBB002456C6 /* WebClient.swift */; };
+		304313D71EB281A1002456C6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304313D61EB281A1002456C6 /* Constants.swift */; };
+		304313D91EB28941002456C6 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304313D81EB28941002456C6 /* Helper.swift */; };
+		304313DB1EB5358C002456C6 /* AccessTokenAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304313DA1EB5358C002456C6 /* AccessTokenAdapter.swift */; };
+		30D352E01EAFB220005C5F43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D352DF1EAFB220005C5F43 /* AppDelegate.swift */; };
+		30D352E21EAFB220005C5F43 /* NewCheersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D352E11EAFB220005C5F43 /* NewCheersVC.swift */; };
+		30D352E51EAFB220005C5F43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30D352E31EAFB220005C5F43 /* Main.storyboard */; };
+		30D352E71EAFB220005C5F43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30D352E61EAFB220005C5F43 /* Assets.xcassets */; };
+		30D352EA1EAFB220005C5F43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30D352E81EAFB220005C5F43 /* LaunchScreen.storyboard */; };
+		76816C0A813678C2B44E4915 /* Pods_Cheerily.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1381541D0D7935E6D53AAE00 /* Pods_Cheerily.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1381541D0D7935E6D53AAE00 /* Pods_Cheerily.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cheerily.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		304313D21EB06FBB002456C6 /* WebClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebClient.swift; sourceTree = "<group>"; };
+		304313D61EB281A1002456C6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		304313D81EB28941002456C6 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		304313DA1EB5358C002456C6 /* AccessTokenAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenAdapter.swift; sourceTree = "<group>"; };
+		30D352DC1EAFB220005C5F43 /* Cheerily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cheerily.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		30D352DF1EAFB220005C5F43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		30D352E11EAFB220005C5F43 /* NewCheersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCheersVC.swift; sourceTree = "<group>"; };
+		30D352E41EAFB220005C5F43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		30D352E61EAFB220005C5F43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		30D352E91EAFB220005C5F43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		30D352EB1EAFB220005C5F43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2825A7450D345B41E3E6CCC /* Pods-Cheerily.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheerily.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cheerily/Pods-Cheerily.debug.xcconfig"; sourceTree = "<group>"; };
+		D9AD719AE497CE9433396097 /* Pods-Cheerily.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheerily.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cheerily/Pods-Cheerily.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		30D352D91EAFB220005C5F43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76816C0A813678C2B44E4915 /* Pods_Cheerily.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		304313D11EB06F7E002456C6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				304313D21EB06FBB002456C6 /* WebClient.swift */,
+				304313D61EB281A1002456C6 /* Constants.swift */,
+				304313DA1EB5358C002456C6 /* AccessTokenAdapter.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		30D352D31EAFB220005C5F43 = {
+			isa = PBXGroup;
+			children = (
+				30D352DE1EAFB220005C5F43 /* Cheerily */,
+				30D352DD1EAFB220005C5F43 /* Products */,
+				7D0D2DD9EEE9957B3051FC4C /* Pods */,
+				FA8E02FC16E115E4701DCCDE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		30D352DD1EAFB220005C5F43 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				30D352DC1EAFB220005C5F43 /* Cheerily.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		30D352DE1EAFB220005C5F43 /* Cheerily */ = {
+			isa = PBXGroup;
+			children = (
+				304313D11EB06F7E002456C6 /* Model */,
+				30D352DF1EAFB220005C5F43 /* AppDelegate.swift */,
+				30D352E11EAFB220005C5F43 /* NewCheersVC.swift */,
+				30D352E31EAFB220005C5F43 /* Main.storyboard */,
+				30D352E61EAFB220005C5F43 /* Assets.xcassets */,
+				30D352E81EAFB220005C5F43 /* LaunchScreen.storyboard */,
+				30D352EB1EAFB220005C5F43 /* Info.plist */,
+				304313D81EB28941002456C6 /* Helper.swift */,
+			);
+			path = Cheerily;
+			sourceTree = "<group>";
+		};
+		7D0D2DD9EEE9957B3051FC4C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D2825A7450D345B41E3E6CCC /* Pods-Cheerily.debug.xcconfig */,
+				D9AD719AE497CE9433396097 /* Pods-Cheerily.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FA8E02FC16E115E4701DCCDE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1381541D0D7935E6D53AAE00 /* Pods_Cheerily.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		30D352DB1EAFB220005C5F43 /* Cheerily */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30D352EE1EAFB220005C5F43 /* Build configuration list for PBXNativeTarget "Cheerily" */;
+			buildPhases = (
+				E28AC67083F423287F68812C /* [CP] Check Pods Manifest.lock */,
+				30D352D81EAFB220005C5F43 /* Sources */,
+				30D352D91EAFB220005C5F43 /* Frameworks */,
+				30D352DA1EAFB220005C5F43 /* Resources */,
+				6580574A8AA27A23CFF5D1F3 /* [CP] Embed Pods Frameworks */,
+				E7508FB6F48B8C1D17E7AA13 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Cheerily;
+			productName = Cheerily;
+			productReference = 30D352DC1EAFB220005C5F43 /* Cheerily.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		30D352D41EAFB220005C5F43 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = RLabs;
+				TargetAttributes = {
+					30D352DB1EAFB220005C5F43 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 59ZDL3D4PJ;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 30D352D71EAFB220005C5F43 /* Build configuration list for PBXProject "Cheerily" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 30D352D31EAFB220005C5F43;
+			productRefGroup = 30D352DD1EAFB220005C5F43 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				30D352DB1EAFB220005C5F43 /* Cheerily */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		30D352DA1EAFB220005C5F43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30D352EA1EAFB220005C5F43 /* LaunchScreen.storyboard in Resources */,
+				30D352E71EAFB220005C5F43 /* Assets.xcassets in Resources */,
+				30D352E51EAFB220005C5F43 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6580574A8AA27A23CFF5D1F3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cheerily/Pods-Cheerily-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E28AC67083F423287F68812C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E7508FB6F48B8C1D17E7AA13 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cheerily/Pods-Cheerily-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		30D352D81EAFB220005C5F43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30D352E21EAFB220005C5F43 /* NewCheersVC.swift in Sources */,
+				30D352E01EAFB220005C5F43 /* AppDelegate.swift in Sources */,
+				304313D91EB28941002456C6 /* Helper.swift in Sources */,
+				304313DB1EB5358C002456C6 /* AccessTokenAdapter.swift in Sources */,
+				304313D31EB06FBB002456C6 /* WebClient.swift in Sources */,
+				304313D71EB281A1002456C6 /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		30D352E31EAFB220005C5F43 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30D352E41EAFB220005C5F43 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		30D352E81EAFB220005C5F43 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30D352E91EAFB220005C5F43 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		30D352EC1EAFB220005C5F43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		30D352ED1EAFB220005C5F43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		30D352EF1EAFB220005C5F43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2825A7450D345B41E3E6CCC /* Pods-Cheerily.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 59ZDL3D4PJ;
+				INFOPLIST_FILE = Cheerily/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tech.rlabs.Cheerily;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		30D352F01EAFB220005C5F43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9AD719AE497CE9433396097 /* Pods-Cheerily.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 59ZDL3D4PJ;
+				INFOPLIST_FILE = Cheerily/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tech.rlabs.Cheerily;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		30D352D71EAFB220005C5F43 /* Build configuration list for PBXProject "Cheerily" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30D352EC1EAFB220005C5F43 /* Debug */,
+				30D352ED1EAFB220005C5F43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30D352EE1EAFB220005C5F43 /* Build configuration list for PBXNativeTarget "Cheerily" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30D352EF1EAFB220005C5F43 /* Debug */,
+				30D352F01EAFB220005C5F43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 30D352D41EAFB220005C5F43 /* Project object */;
+}
