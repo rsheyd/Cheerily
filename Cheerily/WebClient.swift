@@ -73,13 +73,36 @@ class WebClient: NSObject {
                 .responseJSON { response in
                     print("result: \(response.result)")
                     
-                    if let JSON = response.result.value {
-                        print("JSON: \(JSON)")
+                    guard let JSON = response.result.value as? [String:Any] else {
+                        return
                     }
                     
-                    self.accessToken = JSON["access_token"]
-                    self.refreshToken = JSON["refresh_token"]
-                    sessionManager.adapter = AccessTokenAdapter(accessToken: self.accessToken)
+                    self.accessToken = JSON["access_token"] as? String
+                    self.refreshToken = JSON["refresh_token"] as? String
+                    if let accessToken = self.accessToken {
+                        self.sessionManager.adapter = AccessTokenAdapter(accessToken: accessToken, forBaseUrl: Constants.redditTokenBaseUrl)
+                    }
+                    print("JSON: \(JSON)")
+        }
+    }
+    
+    func doRefreshToken() {
+        guard let refreshToken = self.refreshToken else {
+            return
+        }
+        
+        let parameters: Parameters = [
+            "grant_type": "refresh_token",
+            "refresh_token": refreshToken
+        ]
+        
+        Alamofire.request(Constants.redditAccessTokenUrl, method: .post, parameters: parameters, encoding: URLEncoding.httpBody)
+            .authenticate(user: Constants.redditClientId, password: "")
+            .responseJSON { response in
+                print("result: \(response.result)")
+                if let JSON = response.result.value as? [String:Any] {
+                    print("JSON: \(JSON)")
+                }
         }
     }
     
