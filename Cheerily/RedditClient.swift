@@ -9,14 +9,26 @@
 import Foundation
 
 extension WebClient {
-    func getNewAwws() {
-        sessionManager.adapter = AccessTokenAdapter(accessToken: "5HfWtEOZWfyXep7vT13Jt_7lVw0", forBaseUrl: Constants.redditTokenBaseUrl)
+    func getNewAwws(completionHandler: () -> Void) {
+        sessionManager.adapter = AccessTokenAdapter(accessToken: "h8MU3FD-WX3rxgLFntDgPQTWHag", forBaseUrl: Constants.redditTokenBaseUrl)
         sessionManager.request("https://oauth.reddit.com/r/aww/hot")
             .responseJSON { response in
                 print("result: \(response.result)")
-                if let JSON = response.result.value as? [String:Any] {
-                    print("JSON: \(JSON)")
+                
+                guard let JSON = response.result.value as? [String:AnyObject],
+                    let extData = JSON["data"] as? [String:AnyObject],
+                    let posts = extData["children"] as? [[String:AnyObject]] else {
+                        return
                 }
+                
+                let cheers = Cheer.cheersFromResults(posts)
+                print("New cheers count: \(cheers.count)")
+                CheerStore.sharedInstance().cheers = cheers
+                completionHandler()
         }
+    }
+    
+    func downloadImage(completionHandler: () -> Void) {
+        
     }
 }

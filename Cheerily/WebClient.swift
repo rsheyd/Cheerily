@@ -18,7 +18,6 @@ class WebClient: NSObject {
     let sessionManager = SessionManager()
     
     func getValueFromUrlParameter(url: String, parameter: String) -> String? {
-        //let url = "http://example.com?param1=value1&param2=param2"
         let queryItems = URLComponents(string: url)?.queryItems
         let param1 = queryItems?.filter({$0.name == parameter}).first
         return param1?.value

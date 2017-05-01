@@ -19,10 +19,17 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
     var code: String?
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     @IBAction func getNewPressed(_ sender: Any) {
-        WebClient.sharedInstance().getNewAwws()
+        WebClient.sharedInstance().getNewAwws { 
+            imageView.image = CheerStore.sharedInstance().cheers[0].image
+        }
+        imageVew.image =
     }
+    
+    
+    
     @IBAction func authRedditPressed(_ sender: Any) {
         if let redditUrl = redditUrl, let url = URL(string: redditUrl) {
             svc = SFSafariViewController(url: url)

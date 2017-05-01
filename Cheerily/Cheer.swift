@@ -15,28 +15,25 @@ struct Cheer {
     let url: String
     let type: String
     let permalink: String
+    let avData: Data?
     
     // MARK: Initializers
     
     // construct a Cheer from a dictionary
     init(dictionary: [String:AnyObject]) {
-        title = dictionary["title"] as! String
-        url = dictionary["url"] as! String
-        permalink = dictionary["permalink"] as! String
+        title = dictionary["data"]?["title"] as! String
+        url = dictionary["data"]?["url"] as! String
+        permalink = dictionary["data"]?["permalink"] as! String
         
         let urlNSString = url as NSString
         type = urlNSString.pathExtension as String
     }
     
     static func cheersFromResults(_ results: [[String:AnyObject]]) -> [Cheer] {
-        
         var cheers = [Cheer]()
-        
-        // iterate through array of dictionaries, each Movie is a dictionary
         for result in results {
             cheers.append(Cheer(dictionary: result))
         }
-        
         return cheers
     }
 }
