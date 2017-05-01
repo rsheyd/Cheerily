@@ -14,21 +14,39 @@ let kCloseSafariViewControllerNotification = "kCloseSafariViewControllerNotifica
 class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
 
     var svc: SFSafariViewController!
+    let webClient = WebClient.sharedInstance()
     var redditUrl = WebClient.sharedInstance().getRedditAuthUrl()
     var state: String?
     var code: String?
+    let cheerStore = CheerStore.sharedInstance()
+    var validCheers: [Cheer] = []
+    var nextPhotoIndex = 0
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBAction func getNewPressed(_ sender: Any) {
-        WebClient.sharedInstance().getNewAwws { 
-            imageView.image = CheerStore.sharedInstance().cheers[0].image
+        if validCheers.count < 1 {
+            webClient.getNewAwws() {
+                self.validCheers = self.cheerStore.cheers.filter { $0.type == "jpg" }
+                self.webClient.downloadImage(url: self.validCheers[self.nextPhotoIndex].url) { data in
+                    DispatchQueue.main.async {
+                        self.imageView.image = UIImage(data: data)
+                        self.titleLabel.text = self.validCheers[self.nextPhotoIndex].title
+                        self.nextPhotoIndex = self.nextPhotoIndex + 1
+                    }
+                }
+            }
+        } else {
+            webClient.downloadImage(url: validCheers[nextPhotoIndex].url) { data in
+                DispatchQueue.main.async {
+                    self.imageView.image = UIImage(data: data)
+                    self.titleLabel.text = self.validCheers[self.nextPhotoIndex].title
+                    self.nextPhotoIndex = self.nextPhotoIndex + 1
+                }
+            }
         }
-        imageVew.image =
     }
-    
-    
     
     @IBAction func authRedditPressed(_ sender: Any) {
         if let redditUrl = redditUrl, let url = URL(string: redditUrl) {

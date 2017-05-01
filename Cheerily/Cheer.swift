@@ -15,7 +15,7 @@ struct Cheer {
     let url: String
     let type: String
     let permalink: String
-    let avData: Data?
+    let mediaData: Data?
     
     // MARK: Initializers
     
@@ -27,6 +27,7 @@ struct Cheer {
         
         let urlNSString = url as NSString
         type = urlNSString.pathExtension as String
+        mediaData = nil
     }
     
     static func cheersFromResults(_ results: [[String:AnyObject]]) -> [Cheer] {

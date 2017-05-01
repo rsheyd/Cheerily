@@ -47,7 +47,7 @@ class WebClient: NSObject {
     func getRedditAuthUrl() -> String? {
         if let randomState = createRandomState() {
             let authUrl = "\(Constants.redditBaseAuthUrl)client_id=\(Constants.redditClientId)&response_type=code&state=\(randomState)&redirect_uri=\(Constants.redditRedirectUri)&duration=permanent&scope=read"
-            print("Auth URL being sent: \(authUrl)")
+            print("Auth URL created: \(authUrl)")
             return authUrl
         } else {
             return nil
