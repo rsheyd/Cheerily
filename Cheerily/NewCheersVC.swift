@@ -16,8 +16,6 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
     var svc: SFSafariViewController!
     let webClient = WebClient.sharedInstance()
     var redditUrl = WebClient.sharedInstance().getRedditAuthUrl()
-    var state: String?
-    var code: String?
     let cheerStore = CheerStore.sharedInstance()
     var validCheers: [Cheer] = []
     var nextPhotoIndex = 0
@@ -29,26 +27,26 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
         if validCheers.count < 1 {
             webClient.getNewAwws() {
                 self.validCheers = self.cheerStore.cheers.filter { $0.type == "jpg" }
-                self.webClient.downloadImage(url: self.validCheers[self.nextPhotoIndex].url) { data in
-                    DispatchQueue.main.async {
-                        self.imageView.image = UIImage(data: data)
-                        self.titleLabel.text = self.validCheers[self.nextPhotoIndex].title
-                        self.nextPhotoIndex = self.nextPhotoIndex + 1
-                    }
-                }
+                self.downloadAndSetImage()
             }
+        } else if validCheers.count > nextPhotoIndex {
+            downloadAndSetImage()
         } else {
-            webClient.downloadImage(url: validCheers[nextPhotoIndex].url) { data in
-                DispatchQueue.main.async {
-                    self.imageView.image = UIImage(data: data)
-                    self.titleLabel.text = self.validCheers[self.nextPhotoIndex].title
-                    self.nextPhotoIndex = self.nextPhotoIndex + 1
-                }
+            print("No more pictures.")
+        }
+    }
+    
+    func downloadAndSetImage() {
+        webClient.downloadImage(url: validCheers[nextPhotoIndex].url) { data in
+            DispatchQueue.main.async {
+                self.imageView.image = UIImage(data: data)
+                self.titleLabel.text = self.validCheers[self.nextPhotoIndex].title
+                self.nextPhotoIndex = self.nextPhotoIndex + 1
             }
         }
     }
     
-    @IBAction func authRedditPressed(_ sender: Any) {
+    func authWithReddit() {
         if let redditUrl = redditUrl, let url = URL(string: redditUrl) {
             svc = SFSafariViewController(url: url)
             svc.delegate = self
@@ -63,19 +61,25 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(userHasAuthorized), name: NSNotification.Name(rawValue: kCloseSafariViewControllerNotification), object: nil)
     }
     
-    func userHasAuthorized(notification: NSNotification) {
-        if let url = notification.object as? URL,
-            let uriParameters = WebClient.sharedInstance().parseRedirectUri(url) {
-                self.code = uriParameters["code"]
-                self.state = uriParameters["state"]
-                print("Returned redirect uri: \(url)")
-                print(uriParameters)
-        } else {
-            Helper.displayAlertOnMain("Redirect URI could not be parsed.")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        webClient.checkForToken() { exists in
+            if exists {
+                print("We have token.")
+            } else {
+                Helper.displayAlertOnMain("Before you can use this app, you need to authorize it with Reddit.")
+                self.authWithReddit()
+            }
         }
-        
+    }
+    
+    func userHasAuthorized(notification: NSNotification) {
+        if let url = notification.object as? URL {
+            webClient.parseRedirectUri(url)
+        } else {
+            Helper.displayAlertOnMain("Received notification was not a URL.")
+        }
         self.svc.dismiss(animated: true, completion: nil)
-        WebClient.sharedInstance().requestAccessToken()
     }
 
     override func didReceiveMemoryWarning() {

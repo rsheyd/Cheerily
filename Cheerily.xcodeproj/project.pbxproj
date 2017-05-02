@@ -10,7 +10,7 @@
 		304313D31EB06FBB002456C6 /* WebClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304313D21EB06FBB002456C6 /* WebClient.swift */; };
 		304313D91EB28941002456C6 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304313D81EB28941002456C6 /* Helper.swift */; };
 		304313DB1EB5358C002456C6 /* AccessTokenAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304313DA1EB5358C002456C6 /* AccessTokenAdapter.swift */; };
-		304313DD1EB5385B002456C6 /* RedditClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304313DC1EB5385B002456C6 /* RedditClient.swift */; };
+		304313DD1EB5385B002456C6 /* RedditApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304313DC1EB5385B002456C6 /* RedditApiClient.swift */; };
 		304313DF1EB538CB002456C6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304313DE1EB538CB002456C6 /* Constants.swift */; };
 		304313E11EB54BC4002456C6 /* Cheer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304313E01EB54BC4002456C6 /* Cheer.swift */; };
 		304313E31EB657FC002456C6 /* CheerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304313E21EB657FC002456C6 /* CheerStore.swift */; };
@@ -19,6 +19,7 @@
 		30D352E51EAFB220005C5F43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30D352E31EAFB220005C5F43 /* Main.storyboard */; };
 		30D352E71EAFB220005C5F43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30D352E61EAFB220005C5F43 /* Assets.xcassets */; };
 		30D352EA1EAFB220005C5F43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30D352E81EAFB220005C5F43 /* LaunchScreen.storyboard */; };
+		30E277181EB874C90039E756 /* RedditOauthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E277171EB874C90039E756 /* RedditOauthClient.swift */; };
 		76816C0A813678C2B44E4915 /* Pods_Cheerily.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1381541D0D7935E6D53AAE00 /* Pods_Cheerily.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,7 +28,7 @@
 		304313D21EB06FBB002456C6 /* WebClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebClient.swift; sourceTree = "<group>"; };
 		304313D81EB28941002456C6 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		304313DA1EB5358C002456C6 /* AccessTokenAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenAdapter.swift; sourceTree = "<group>"; };
-		304313DC1EB5385B002456C6 /* RedditClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedditClient.swift; sourceTree = "<group>"; };
+		304313DC1EB5385B002456C6 /* RedditApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedditApiClient.swift; sourceTree = "<group>"; };
 		304313DE1EB538CB002456C6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		304313E01EB54BC4002456C6 /* Cheer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cheer.swift; sourceTree = "<group>"; };
 		304313E21EB657FC002456C6 /* CheerStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheerStore.swift; sourceTree = "<group>"; };
@@ -38,6 +39,7 @@
 		30D352E61EAFB220005C5F43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30D352E91EAFB220005C5F43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30D352EB1EAFB220005C5F43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30E277171EB874C90039E756 /* RedditOauthClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedditOauthClient.swift; sourceTree = "<group>"; };
 		D2825A7450D345B41E3E6CCC /* Pods-Cheerily.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheerily.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cheerily/Pods-Cheerily.debug.xcconfig"; sourceTree = "<group>"; };
 		D9AD719AE497CE9433396097 /* Pods-Cheerily.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheerily.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cheerily/Pods-Cheerily.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,8 +60,9 @@
 			isa = PBXGroup;
 			children = (
 				304313D21EB06FBB002456C6 /* WebClient.swift */,
+				30E277171EB874C90039E756 /* RedditOauthClient.swift */,
+				304313DC1EB5385B002456C6 /* RedditApiClient.swift */,
 				304313DA1EB5358C002456C6 /* AccessTokenAdapter.swift */,
-				304313DC1EB5385B002456C6 /* RedditClient.swift */,
 				304313DE1EB538CB002456C6 /* Constants.swift */,
 				304313E01EB54BC4002456C6 /* Cheer.swift */,
 				304313E21EB657FC002456C6 /* CheerStore.swift */,
@@ -255,8 +258,9 @@
 				304313DB1EB5358C002456C6 /* AccessTokenAdapter.swift in Sources */,
 				304313DF1EB538CB002456C6 /* Constants.swift in Sources */,
 				304313E11EB54BC4002456C6 /* Cheer.swift in Sources */,
-				304313DD1EB5385B002456C6 /* RedditClient.swift in Sources */,
+				304313DD1EB5385B002456C6 /* RedditApiClient.swift in Sources */,
 				304313D31EB06FBB002456C6 /* WebClient.swift in Sources */,
+				30E277181EB874C90039E756 /* RedditOauthClient.swift in Sources */,
 				304313E31EB657FC002456C6 /* CheerStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
