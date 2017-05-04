@@ -8,6 +8,7 @@
 
 import UIKit
 import SafariServices
+import CoreData
 
 let kCloseSafariViewControllerNotification = "kCloseSafariViewControllerNotification"
 
@@ -19,13 +20,19 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
     let cheerStore = CheerStore.sharedInstance()
     var validCheers: [Cheer] = []
     var nextPhotoIndex = 0
+    var foundCheers: [NSManagedObject] = []
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
+    @IBAction func buttonPressed(_ sender: Any) {
+        self.loadCoreData()
+        print(foundCheers[0].value(forKeyPath: "title") as! String)
+    }
+    
     @IBAction func getNewPressed(_ sender: Any) {
         if validCheers.count < 1 {
-            webClient.getNewAwws() {
+            webClient.getNewAwws(triedRenewingToken: false) {
                 self.validCheers = self.cheerStore.cheers.filter { $0.type == "jpg" }
                 self.downloadAndSetImage()
             }
@@ -46,13 +53,21 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
         }
     }
     
-    func authWithReddit() {
-        if let redditUrl = redditUrl, let url = URL(string: redditUrl) {
-            svc = SFSafariViewController(url: url)
-            svc.delegate = self
-            self.present(svc, animated: true, completion: nil)
-        } else {
-            Helper.displayAlertOnMain("Reddit authorization URL is invalid.")
+    func loadCoreData() {
+        
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        let managedContext = appDelegate.managedObjectContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CoreCheer")
+        
+        do {
+            foundCheers = try managedContext.fetch(fetchRequest)
+            print("cheers fetched")
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
         }
     }
     
@@ -72,22 +87,9 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
             }
         }
     }
-    
-    func userHasAuthorized(notification: NSNotification) {
-        if let url = notification.object as? URL {
-            webClient.parseRedirectUri(url)
-        } else {
-            Helper.displayAlertOnMain("Received notification was not a URL.")
-        }
-        self.svc.dismiss(animated: true, completion: nil)
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
-        controller.dismiss(animated: true, completion: nil)
     }
 }
 

@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 extension WebClient {
-    func getNewAwws(completionHandler: @escaping () -> Void) {
+    func getNewAwws(triedRenewingToken: Bool, completionHandler: @escaping () -> Void) {
         guard let accessToken = accessToken else {
             print("Error. No access token.")
             return
@@ -26,12 +26,16 @@ extension WebClient {
                 }
                 print(JSON)
                 
-                // renew token with refresh token if 401 error is returned
-                if JSON["error"] as? String == "401" {
-                    self.renewToken() {
-                        self.getNewAwws() {
-                            completionHandler()
+                if JSON["error"] as? Int == 401 {
+                    if !triedRenewingToken {
+                        self.renewToken() {
+                            self.getNewAwws(triedRenewingToken: true) {
+                                completionHandler()
+                            }
                         }
+                    } else {
+                        Helper.displayAlertOnMain("Error accessing reddit API or renewing access token. Try again later.")
+                        return
                     }
                     return
                 }
@@ -48,6 +52,4 @@ extension WebClient {
                 completionHandler()
         }
     }
-    
-
 }

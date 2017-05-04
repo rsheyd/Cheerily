@@ -82,6 +82,7 @@ extension WebClient {
     }
     
     func renewToken(completionHandler: @escaping () -> Void) {
+        
         guard let refreshToken = refreshToken else {
             print("No refresh token available.")
             return
@@ -110,6 +111,7 @@ extension WebClient {
                 
                 self.accessToken = accessToken
                 UserDefaults.standard.setValue(accessToken, forKey: "accessToken")
+                print("New token saved")
                 completionHandler()
         }
     }

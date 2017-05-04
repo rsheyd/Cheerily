@@ -6,7 +6,8 @@
 //  Copyright © 2017 RLabs. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import CoreData
 
 struct Cheer {
     // MARK: Properties
@@ -22,7 +23,13 @@ struct Cheer {
     // construct a Cheer from a dictionary
     init(dictionary: [String:AnyObject]) {
         title = dictionary["data"]?["title"] as! String
-        url = dictionary["data"]?["url"] as! String
+        let tempUrl = dictionary["data"]?["url"] as! String
+        var tempUrlComponents = URLComponents(string: tempUrl)
+        if tempUrlComponents?.scheme == "http" {
+            tempUrlComponents?.scheme = "https"
+        }
+        url = tempUrlComponents!.string!
+        
         permalink = dictionary["data"]?["permalink"] as! String
         
         let urlNSString = url as NSString
@@ -33,8 +40,66 @@ struct Cheer {
     static func cheersFromResults(_ results: [[String:AnyObject]]) -> [Cheer] {
         var cheers = [Cheer]()
         for result in results {
-            cheers.append(Cheer(dictionary: result))
+            let newCheer = Cheer(dictionary: result)
+            saveToCoreData(newCheer)
+//            if alreadySaved(newCheer) {
+//                print("This cheer was previously downloaded.")
+//            } else {
+//                saveToCoreData(newCheer)
+//            }
+            cheers.append(newCheer)
         }
         return cheers
+    }
+    
+    static func saveToCoreData(_ cheer: Cheer) {
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        let managedContext = appDelegate.managedObjectContext
+        let entity = NSEntityDescription.entity(forEntityName: "CoreCheer",
+                                                in: managedContext)!
+        let coreCheer = NSManagedObject(entity: entity,
+                                    insertInto: managedContext)
+        
+        coreCheer.setValue(cheer.title, forKeyPath: "title")
+        coreCheer.setValue(cheer.url, forKeyPath: "url")
+        coreCheer.setValue(cheer.permalink, forKeyPath: "permalink")
+        coreCheer.setValue(cheer.type, forKeyPath: "type")
+        coreCheer.setValue(false, forKeyPath: "seen")
+        
+        appDelegate.saveContext()
+    }
+    
+    static func alreadySaved(_ newCheer: Cheer) -> Bool {
+        let newPermalink = newCheer.permalink
+        var foundCheers: [NSManagedObject] = []
+        
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return false
+        }
+        
+        let managedContext = appDelegate.managedObjectContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CoreCheer")
+        fetchRequest.predicate = NSPredicate(format: "permalink == %@", newPermalink)
+        
+        do {
+            foundCheers = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        for cheer in foundCheers {
+            print(cheer.value(forKeyPath: "title") as? String)
+        }
+        
+        if foundCheers.count > 0 {
+            return true
+        } else {
+            return false
+        }
     }
 }
