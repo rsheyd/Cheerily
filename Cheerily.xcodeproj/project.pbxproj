@@ -20,7 +20,7 @@
 		30D352E71EAFB220005C5F43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30D352E61EAFB220005C5F43 /* Assets.xcassets */; };
 		30D352EA1EAFB220005C5F43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30D352E81EAFB220005C5F43 /* LaunchScreen.storyboard */; };
 		30E277181EB874C90039E756 /* RedditOauthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E277171EB874C90039E756 /* RedditOauthClient.swift */; };
-		30E2773C1EB9607A0039E756 /* CheerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30E2773A1EB9607A0039E756 /* CheerModel.xcdatamodeld */; };
+		30E2773C1EB9607A0039E756 /* Cheerily.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30E2773A1EB9607A0039E756 /* Cheerily.xcdatamodeld */; };
 		30E2773E1EBAC2760039E756 /* AuthWithRedditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2773D1EBAC2760039E756 /* AuthWithRedditVC.swift */; };
 		30E277441EBAD61F0039E756 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E277431EBAD61F0039E756 /* CoreData.framework */; };
 		76816C0A813678C2B44E4915 /* Pods_Cheerily.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1381541D0D7935E6D53AAE00 /* Pods_Cheerily.framework */; };
@@ -43,7 +43,7 @@
 		30D352E91EAFB220005C5F43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30D352EB1EAFB220005C5F43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30E277171EB874C90039E756 /* RedditOauthClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedditOauthClient.swift; sourceTree = "<group>"; };
-		30E2773B1EB9607A0039E756 /* CheerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CheerModel.xcdatamodel; sourceTree = "<group>"; };
+		30E2773B1EB9607A0039E756 /* Cheerily.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cheerily.xcdatamodel; sourceTree = "<group>"; };
 		30E2773D1EBAC2760039E756 /* AuthWithRedditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthWithRedditVC.swift; sourceTree = "<group>"; };
 		30E277431EBAD61F0039E756 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D2825A7450D345B41E3E6CCC /* Pods-Cheerily.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheerily.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cheerily/Pods-Cheerily.debug.xcconfig"; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 				304313DE1EB538CB002456C6 /* Constants.swift */,
 				304313E01EB54BC4002456C6 /* Cheer.swift */,
 				304313E21EB657FC002456C6 /* CheerStore.swift */,
-				30E2773A1EB9607A0039E756 /* CheerModel.xcdatamodeld */,
+				30E2773A1EB9607A0039E756 /* Cheerily.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -271,7 +271,7 @@
 				304313DD1EB5385B002456C6 /* RedditApiClient.swift in Sources */,
 				304313D31EB06FBB002456C6 /* WebClient.swift in Sources */,
 				30E2773E1EBAC2760039E756 /* AuthWithRedditVC.swift in Sources */,
-				30E2773C1EB9607A0039E756 /* CheerModel.xcdatamodeld in Sources */,
+				30E2773C1EB9607A0039E756 /* Cheerily.xcdatamodeld in Sources */,
 				30E277181EB874C90039E756 /* RedditOauthClient.swift in Sources */,
 				304313E31EB657FC002456C6 /* CheerStore.swift in Sources */,
 			);
@@ -446,13 +446,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		30E2773A1EB9607A0039E756 /* CheerModel.xcdatamodeld */ = {
+		30E2773A1EB9607A0039E756 /* Cheerily.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				30E2773B1EB9607A0039E756 /* CheerModel.xcdatamodel */,
+				30E2773B1EB9607A0039E756 /* Cheerily.xcdatamodel */,
 			);
-			currentVersion = 30E2773B1EB9607A0039E756 /* CheerModel.xcdatamodel */;
-			path = CheerModel.xcdatamodeld;
+			currentVersion = 30E2773B1EB9607A0039E756 /* Cheerily.xcdatamodel */;
+			path = Cheerily.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

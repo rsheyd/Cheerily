@@ -25,8 +25,9 @@ class WebClient: NSObject {
     
     func downloadImage(url: String, completionHandler: @escaping (_ data: Data) -> Void) {
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-            let documentsURL = FileManager.default.urls(for: .documentDirectory,
+            var documentsURL = FileManager.default.urls(for: .documentDirectory,
                                                         in: .userDomainMask)[0]
+            documentsURL.appendPathComponent("image")
             return (documentsURL, [.removePreviousFile, .createIntermediateDirectories])
         }
         

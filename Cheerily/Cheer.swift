@@ -41,12 +41,11 @@ struct Cheer {
         var cheers = [Cheer]()
         for result in results {
             let newCheer = Cheer(dictionary: result)
-            saveToCoreData(newCheer)
-//            if alreadySaved(newCheer) {
-//                print("This cheer was previously downloaded.")
-//            } else {
-//                saveToCoreData(newCheer)
-//            }
+            if alreadySaved(newCheer) {
+                print("This cheer was previously downloaded.")
+            } else {
+                saveToCoreData(newCheer)
+            }
             cheers.append(newCheer)
         }
         return cheers

@@ -27,7 +27,7 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
     
     @IBAction func buttonPressed(_ sender: Any) {
         self.loadCoreData()
-        print(foundCheers[0].value(forKeyPath: "title") as! String)
+        print(foundCheers.count)
     }
     
     @IBAction func getNewPressed(_ sender: Any) {
