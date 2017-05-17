@@ -14,6 +14,7 @@
 		304313DF1EB538CB002456C6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304313DE1EB538CB002456C6 /* Constants.swift */; };
 		304313E11EB54BC4002456C6 /* Cheer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304313E01EB54BC4002456C6 /* Cheer.swift */; };
 		304313E31EB657FC002456C6 /* CheerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304313E21EB657FC002456C6 /* CheerStore.swift */; };
+		307061031EC4393B00D7F994 /* MySavesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307061021EC4393B00D7F994 /* MySavesVC.swift */; };
 		30D352E01EAFB220005C5F43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D352DF1EAFB220005C5F43 /* AppDelegate.swift */; };
 		30D352E21EAFB220005C5F43 /* NewCheersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D352E11EAFB220005C5F43 /* NewCheersVC.swift */; };
 		30D352E51EAFB220005C5F43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30D352E31EAFB220005C5F43 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 		304313DE1EB538CB002456C6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		304313E01EB54BC4002456C6 /* Cheer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cheer.swift; sourceTree = "<group>"; };
 		304313E21EB657FC002456C6 /* CheerStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheerStore.swift; sourceTree = "<group>"; };
+		307061021EC4393B00D7F994 /* MySavesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySavesVC.swift; sourceTree = "<group>"; };
 		30D352DC1EAFB220005C5F43 /* Cheerily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cheerily.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30D352DF1EAFB220005C5F43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30D352E11EAFB220005C5F43 /* NewCheersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCheersVC.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			children = (
 				30D352E11EAFB220005C5F43 /* NewCheersVC.swift */,
 				30E2773D1EBAC2760039E756 /* AuthWithRedditVC.swift */,
+				307061021EC4393B00D7F994 /* MySavesVC.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			files = (
 				30D352E21EAFB220005C5F43 /* NewCheersVC.swift in Sources */,
 				30D352E01EAFB220005C5F43 /* AppDelegate.swift in Sources */,
+				307061031EC4393B00D7F994 /* MySavesVC.swift in Sources */,
 				304313D91EB28941002456C6 /* Helper.swift in Sources */,
 				304313DB1EB5358C002456C6 /* AccessTokenAdapter.swift in Sources */,
 				304313DF1EB538CB002456C6 /* Constants.swift in Sources */,

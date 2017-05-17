@@ -15,6 +15,7 @@ class WebClient: NSObject {
     var authCode: String?
     var accessToken: String?
     var refreshToken: String?
+    var lastPostId: String?
     let sessionManager = SessionManager()
     
     func getValueFromUrlParameter(url: String, parameter: String) -> String? {

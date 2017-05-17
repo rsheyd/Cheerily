@@ -10,7 +10,7 @@ import SafariServices
 
 extension NewCheersVC {
     func authWithReddit() {
-        if let redditUrl = redditUrl, let url = URL(string: redditUrl) {
+        if let redditUrl = webClient.getRedditAuthUrl(), let url = URL(string: redditUrl) {
             svc = SFSafariViewController(url: url)
             svc.delegate = self
             self.present(svc, animated: true, completion: nil)
@@ -26,6 +26,7 @@ extension NewCheersVC {
             Helper.displayAlertOnMain("Received notification was not a URL.")
         }
         self.svc.dismiss(animated: true, completion: nil)
+        getNextCheer()
     }
     
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {

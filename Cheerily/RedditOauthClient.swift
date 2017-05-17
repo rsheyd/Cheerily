@@ -111,7 +111,7 @@ extension WebClient {
                 
                 self.accessToken = accessToken
                 UserDefaults.standard.setValue(accessToken, forKey: "accessToken")
-                print("New token saved")
+                print("Token renewed.")
                 completionHandler()
         }
     }

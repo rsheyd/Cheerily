@@ -39,15 +39,17 @@ struct Cheer {
     
     static func cheersFromResults(_ results: [[String:AnyObject]]) -> [Cheer] {
         var cheers = [Cheer]()
+        var duplicateCheers = 0
         for result in results {
             let newCheer = Cheer(dictionary: result)
             if alreadySaved(newCheer) {
-                print("This cheer was previously downloaded.")
+                duplicateCheers += 1
             } else {
                 saveToCoreData(newCheer)
             }
             cheers.append(newCheer)
         }
+        print("\(duplicateCheers) duplicate cheers found.")
         return cheers
     }
     
@@ -74,25 +76,9 @@ struct Cheer {
     
     static func alreadySaved(_ newCheer: Cheer) -> Bool {
         let newPermalink = newCheer.permalink
-        var foundCheers: [NSManagedObject] = []
-        
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-                return false
-        }
-        
-        let managedContext = appDelegate.managedObjectContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CoreCheer")
-        fetchRequest.predicate = NSPredicate(format: "permalink == %@", newPermalink)
-        
-        do {
-            foundCheers = try managedContext.fetch(fetchRequest)
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-        
-        for cheer in foundCheers {
-            print(cheer.value(forKeyPath: "title") as? String)
+        guard let foundCheers = CheerStore.sharedInstance().loadFromCoreData(entity: "CoreCheer", formatString: "permalink == %@", filterValue: newPermalink) else {
+            print("Could not load cheers filtered by permalink.")
+            return false
         }
         
         if foundCheers.count > 0 {
