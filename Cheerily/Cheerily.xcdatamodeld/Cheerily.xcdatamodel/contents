@@ -7,7 +7,12 @@
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="SavedCheer" representedClassName="SavedCheer" syncable="YES" codeGenerationType="class">
+        <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="CoreCheer" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="SavedCheer" positionX="-63" positionY="18" width="128" height="75"/>
     </elements>
 </model>

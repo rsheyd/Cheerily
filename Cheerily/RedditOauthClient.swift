@@ -78,6 +78,7 @@ extension WebClient {
                                        forBaseUrl: Constants.redditTokenBaseUrl)
                 
                 print("JSON: \(JSON)")
+                completionHandler(true)
         }
     }
     

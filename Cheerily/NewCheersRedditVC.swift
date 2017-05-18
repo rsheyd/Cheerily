@@ -9,6 +9,19 @@
 import SafariServices
 
 extension NewCheersVC {
+    
+    func checkRedditToken() {
+        webClient.checkForToken() { exists in
+            if exists {
+                print("We have token.")
+                self.getNextCheer()
+            } else {
+                Helper.displayAlertOnMain("Before you can use this app, you need to authorize it with Reddit.")
+                self.authWithReddit()
+            }
+        }
+    }
+    
     func authWithReddit() {
         if let redditUrl = webClient.getRedditAuthUrl(), let url = URL(string: redditUrl) {
             svc = SFSafariViewController(url: url)
@@ -26,7 +39,13 @@ extension NewCheersVC {
             Helper.displayAlertOnMain("Received notification was not a URL.")
         }
         self.svc.dismiss(animated: true, completion: nil)
-        getNextCheer()
+        webClient.requestAccessToken() { success in
+            if success {
+                self.getNextCheer()
+            } else {
+                Helper.displayAlertOnMain("Could not get reddit access token.")
+            }
+        }
     }
     
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
