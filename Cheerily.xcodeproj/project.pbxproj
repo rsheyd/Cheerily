@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		302A5F2B1ECD397F002072BB /* SavedCheerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302A5F2A1ECD397F002072BB /* SavedCheerModel.swift */; };
+		302A5F2D1ECE3BE8002072BB /* SavedCheerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302A5F2C1ECE3BE8002072BB /* SavedCheerVC.swift */; };
 		304313D31EB06FBB002456C6 /* WebClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304313D21EB06FBB002456C6 /* WebClient.swift */; };
 		304313D91EB28941002456C6 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304313D81EB28941002456C6 /* Helper.swift */; };
 		304313DB1EB5358C002456C6 /* AccessTokenAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304313DA1EB5358C002456C6 /* AccessTokenAdapter.swift */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		1381541D0D7935E6D53AAE00 /* Pods_Cheerily.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cheerily.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		302A5F2A1ECD397F002072BB /* SavedCheerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedCheerModel.swift; sourceTree = "<group>"; };
+		302A5F2C1ECE3BE8002072BB /* SavedCheerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedCheerVC.swift; sourceTree = "<group>"; };
 		304313D21EB06FBB002456C6 /* WebClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebClient.swift; sourceTree = "<group>"; };
 		304313D81EB28941002456C6 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		304313DA1EB5358C002456C6 /* AccessTokenAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenAdapter.swift; sourceTree = "<group>"; };
@@ -65,7 +67,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		304313D11EB06F7E002456C6 /* Model */ = {
+		302A5F2E1ECE3BF8002072BB /* Web APIs */ = {
 			isa = PBXGroup;
 			children = (
 				304313D21EB06FBB002456C6 /* WebClient.swift */,
@@ -73,10 +75,26 @@
 				304313DC1EB5385B002456C6 /* RedditApiClient.swift */,
 				304313DA1EB5358C002456C6 /* AccessTokenAdapter.swift */,
 				304313DE1EB538CB002456C6 /* Constants.swift */,
+			);
+			name = "Web APIs";
+			sourceTree = "<group>";
+		};
+		302A5F2F1ECE3C01002072BB /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
 				304313E01EB54BC4002456C6 /* Cheer.swift */,
 				302A5F2A1ECD397F002072BB /* SavedCheerModel.swift */,
 				304313E21EB657FC002456C6 /* CheerStore.swift */,
 				30E2773A1EB9607A0039E756 /* Cheerily.xcdatamodeld */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		304313D11EB06F7E002456C6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				302A5F2F1ECE3C01002072BB /* Core Data */,
+				302A5F2E1ECE3BF8002072BB /* Web APIs */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -86,6 +104,7 @@
 			children = (
 				30D352E11EAFB220005C5F43 /* NewCheersVC.swift */,
 				307061021EC4393B00D7F994 /* MySavesVC.swift */,
+				302A5F2C1ECE3BE8002072BB /* SavedCheerVC.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -271,6 +290,7 @@
 				304313D91EB28941002456C6 /* Helper.swift in Sources */,
 				304313DB1EB5358C002456C6 /* AccessTokenAdapter.swift in Sources */,
 				304313DF1EB538CB002456C6 /* Constants.swift in Sources */,
+				302A5F2D1ECE3BE8002072BB /* SavedCheerVC.swift in Sources */,
 				302A5F2B1ECD397F002072BB /* SavedCheerModel.swift in Sources */,
 				304313E11EB54BC4002456C6 /* Cheer.swift in Sources */,
 				304313DD1EB5385B002456C6 /* RedditApiClient.swift in Sources */,

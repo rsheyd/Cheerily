@@ -27,7 +27,7 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
     @IBOutlet weak var mySavesButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    // MARK: UI AND APP STATE
+    // MARK: - UI AND APP STATE
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         if let title = titleLabel.text, let image = imageView.image,
@@ -39,8 +39,6 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
         } else {
             Helper.displayAlertOnMain("Sorry, we could not save this cheer.")
         }
-        
-        cheerStore.loadSavedCheers()
     }
     
     @IBAction func getNewPressed(_ sender: Any) {
@@ -66,21 +64,17 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
     func enableUI(_ enabled: Bool) {
         moarButton.isEnabled = enabled
         saveButton.isEnabled = enabled
-        mySavesButton.isEnabled = enabled
+        activityIndicator.isHidden = enabled
+        imageView.isHidden = !enabled
+        titleLabel.isHidden = !enabled
         if enabled {
-            imageView.isHidden = false
-            titleLabel.isHidden = false
-            activityIndicator.isHidden = true
             activityIndicator.stopAnimating()
         } else {
-            imageView.isHidden = true
-            titleLabel.isHidden = true
-            activityIndicator.isHidden = false
             activityIndicator.startAnimating()
         }
     }
     
-    // MARK: LOADING NEW CHEERS
+    // MARK: - LOADING NEW CHEERS
     
     func getNextCheer() {
         enableUI(false)
@@ -144,7 +138,7 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
         }
     }
     
-    // MARK: REDDIT METHODS
+    // MARK: - REDDIT METHODS
     
     func checkRedditToken() {
         webClient.checkForToken() { exists in
