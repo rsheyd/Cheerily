@@ -73,4 +73,43 @@ class CheerStore: NSObject {
         
         appDelegate.saveContext()
     }
+    
+    func saveSavedCheer(_ cheer: SavedCheerModel) {
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        let managedContext = appDelegate.managedObjectContext
+        let entity = NSEntityDescription.entity(forEntityName: "SavedCheer",
+                                                in: managedContext)!
+        let savedCheer = NSManagedObject(entity: entity,
+                                         insertInto: managedContext)
+        
+        savedCheer.setValue(cheer.title, forKeyPath: "title")
+        savedCheer.setValue(cheer.imageData, forKeyPath: "imageData")
+        
+        appDelegate.saveContext()
+    }
+    
+    func loadSavedCheers() {
+        var managedObjects: [NSManagedObject] = []
+        
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                print("Could not get appDelegate.")
+                return
+        }
+        
+        let managedContext = appDelegate.managedObjectContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "SavedCheer")
+        
+        do {
+            managedObjects = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        print(managedObjects.count)
+    }
 }

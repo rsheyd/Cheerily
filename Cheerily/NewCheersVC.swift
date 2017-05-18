@@ -28,6 +28,15 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBAction func saveButtonPressed(_ sender: Any) {
+        if let title = titleLabel.text, let image = imageView.image,
+            let data = UIImagePNGRepresentation(image) {
+                let newSavedCheer = SavedCheerModel(title: title, imageData: data)
+                cheerStore.saveSavedCheer(newSavedCheer)
+        } else {
+            Helper.displayAlertOnMain("Sorry, we could not save this cheer.")
+        }
+        
+        cheerStore.loadSavedCheers()
         
     }
     

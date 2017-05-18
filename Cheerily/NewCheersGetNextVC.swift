@@ -19,12 +19,12 @@ extension NewCheersVC {
         } else if coreCheers.count > nextPhotoIndex {
             downloadAndSetImage() {
                 if (self.coreCheers.count - self.nextPhotoIndex) < 5 {
-                    print("Last pictures coming up. Will try to get more.")
+                    print("Last few pic links coming up. Will try to get more.")
                     self.getNewCheers()
                 }
             }
         } else {
-            print("Something went wrong and there are no more pictures. Woops.")
+            print("Something went wrong and there are no more picture links. Woops.")
             Helper.displayAlertOnMain("There was an error. Please restart app.")
         }
     }
@@ -35,7 +35,7 @@ extension NewCheersVC {
             self.nextPhotoIndex = 0
             // if all new cheers were duplicates, do another try
             if self.coreCheers.count == 0 {
-                print("All new cheers must have been duplicates. Initating new request for cheers.")
+                print("All new cheers must have been previously downloaded. Initating new request for cheers.")
                 self.getNewCheers()
             }
         }
