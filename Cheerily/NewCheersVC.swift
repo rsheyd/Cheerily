@@ -27,17 +27,20 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
     @IBOutlet weak var mySavesButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    // MARK: UI AND APP STATE
+    
     @IBAction func saveButtonPressed(_ sender: Any) {
         if let title = titleLabel.text, let image = imageView.image,
             let data = UIImagePNGRepresentation(image) {
-                let newSavedCheer = SavedCheerModel(title: title, imageData: data)
-                cheerStore.saveSavedCheer(newSavedCheer)
+            let newSavedCheer = SavedCheerModel(title: title, imageData: data)
+            cheerStore.saveSavedCheer(newSavedCheer)
+            saveButton.isEnabled = false
+            Helper.displayAlertOnMain("Saved!")
         } else {
             Helper.displayAlertOnMain("Sorry, we could not save this cheer.")
         }
         
         cheerStore.loadSavedCheers()
-        
     }
     
     @IBAction func getNewPressed(_ sender: Any) {
@@ -54,7 +57,6 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navigationController?.navigationBar.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,12 +69,122 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
         mySavesButton.isEnabled = enabled
         if enabled {
             imageView.isHidden = false
+            titleLabel.isHidden = false
             activityIndicator.isHidden = true
             activityIndicator.stopAnimating()
         } else {
             imageView.isHidden = true
+            titleLabel.isHidden = true
             activityIndicator.isHidden = false
             activityIndicator.startAnimating()
         }
+    }
+    
+    // MARK: LOADING NEW CHEERS
+    
+    func getNextCheer() {
+        enableUI(false)
+        if coreCheers.count < 1 {
+            webClient.getNewAwws(triedRenewingToken: false) {
+                self.setAndCheckNewCheers()
+            }
+        } else if coreCheers.count > nextPhotoIndex {
+            downloadAndSetImage() {
+                if (self.coreCheers.count - self.nextPhotoIndex) < 5 {
+                    print("Last few pic links coming up. Will try to get more.")
+                    self.getNewCheers()
+                }
+            }
+        } else {
+            print("Something went wrong and there are no more picture links. Woops.")
+            Helper.displayAlertOnMain("There was an error. Please restart app.")
+        }
+    }
+    
+    func getNewCheers() {
+        webClient.getNewAwws(triedRenewingToken: false) {
+            self.coreCheers = self.cheerStore.coreCheers
+            self.nextPhotoIndex = 0
+            // if all new cheers were duplicates, do another try
+            if self.coreCheers.count == 0 {
+                print("All new cheers must have been previously downloaded. Initating new request for cheers.")
+                self.getNewCheers()
+            }
+        }
+    }
+    
+    func setAndCheckNewCheers() {
+        self.coreCheers = self.cheerStore.coreCheers
+        // if all new cheers were duplicates, do another try
+        if self.coreCheers.count == 0 {
+            print("All new cheers must have been duplicates. Initating new request for cheers.")
+            self.getNextCheer()
+        } else {
+            self.downloadAndSetImage() {}
+        }
+    }
+    
+    func downloadAndSetImage(completionHandler: @escaping () -> Void) {
+        guard coreCheers.count > nextPhotoIndex else {
+            print("\(coreCheers.count) cheers loaded. There's no cheer at index \(nextPhotoIndex).")
+            return
+        }
+        
+        webClient.downloadImage(url: coreCheers[nextPhotoIndex]
+            .value(forKey: "url") as! String) { data in
+                DispatchQueue.main.async {
+                    self.imageView.image = UIImage(data: data)
+                    self.titleLabel.text = self.coreCheers[self.nextPhotoIndex].value(forKey: "title") as? String
+                    self.coreCheers[self.nextPhotoIndex].setValue(NSNumber(value: true), forKey: "seen")
+                    self.cheerStore.saveCheers()
+                    self.nextPhotoIndex = self.nextPhotoIndex + 1
+                    self.enableUI(true)
+                }
+                completionHandler()
+        }
+    }
+    
+    // MARK: REDDIT METHODS
+    
+    func checkRedditToken() {
+        webClient.checkForToken() { exists in
+            if exists {
+                print("We have token.")
+                self.getNextCheer()
+            } else {
+                Helper.displayAlertOnMain("Before you can use this app, you need to authorize it with Reddit.")
+                self.authWithReddit()
+            }
+        }
+    }
+    
+    func authWithReddit() {
+        if let redditUrl = webClient.getRedditAuthUrl(), let url = URL(string: redditUrl) {
+            svc = SFSafariViewController(url: url)
+            svc.delegate = self
+            self.present(svc, animated: true, completion: nil)
+        } else {
+            Helper.displayAlertOnMain("Reddit authorization URL is invalid.")
+        }
+    }
+    
+    func userHasAuthorized(notification: NSNotification) {
+        if let url = notification.object as? URL {
+            webClient.parseRedirectUri(url)
+        } else {
+            Helper.displayAlertOnMain("Received notification was not a URL.")
+        }
+        self.svc.dismiss(animated: true, completion: nil)
+        webClient.requestAccessToken() { success in
+            if success {
+                self.getNextCheer()
+            } else {
+                Helper.displayAlertOnMain("Could not get reddit access token.")
+            }
+        }
+    }
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
