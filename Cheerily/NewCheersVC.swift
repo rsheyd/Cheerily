@@ -125,16 +125,23 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
         }
         
         webClient.downloadImage(url: coreCheers[nextPhotoIndex]
-            .value(forKey: "url") as! String) { data in
-                DispatchQueue.main.async {
-                    self.imageView.image = UIImage(data: data)
-                    self.titleLabel.text = self.coreCheers[self.nextPhotoIndex].value(forKey: "title") as? String
-                    self.coreCheers[self.nextPhotoIndex].setValue(NSNumber(value: true), forKey: "seen")
-                    self.cheerStore.saveCheers()
-                    self.nextPhotoIndex = self.nextPhotoIndex + 1
+            .value(forKey: "url") as! String) { success, data in
+                if success {
+                    DispatchQueue.main.async {
+                        if let data = data {
+                            self.imageView.image = UIImage(data: data)
+                        }
+                        self.titleLabel.text = self.coreCheers[self.nextPhotoIndex].value(forKey: "title") as? String
+                        self.coreCheers[self.nextPhotoIndex].setValue(NSNumber(value: true), forKey: "seen")
+                        self.cheerStore.saveCheers()
+                        self.nextPhotoIndex = self.nextPhotoIndex + 1
+                        self.enableUI(true)
+                    }
+                    completionHandler()
+                } else {
                     self.enableUI(true)
+                    return
                 }
-                completionHandler()
         }
     }
     

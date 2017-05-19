@@ -24,7 +24,7 @@ class WebClient: NSObject {
         return param1?.value
     }
     
-    func downloadImage(url: String, completionHandler: @escaping (_ data: Data) -> Void) {
+    func downloadImage(url: String, completionHandler: @escaping (_ success: Bool, _ data: Data?) -> Void) {
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
             var documentsURL = FileManager.default.urls(for: .documentDirectory,
                                                         in: .userDomainMask)[0]
@@ -34,9 +34,13 @@ class WebClient: NSObject {
         
         Alamofire.download(url, to: destination).responseData { response in
             print(response)
+            if let error = response.result.error {
+                Helper.displayAlertOnMain(error.localizedDescription)
+                completionHandler(false, nil)
+            }
             if let data = response.result.value {
                 print("Data received.")
-                completionHandler(data)
+                completionHandler(true, data)
             }
         }
     }
