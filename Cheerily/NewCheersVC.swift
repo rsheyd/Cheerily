@@ -20,6 +20,7 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
     var coreCheers: [NSManagedObject] = []
     var nextPhotoIndex = 0
     
+    @IBOutlet weak var customTitleField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var moarButton: UIButton!
@@ -33,18 +34,23 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        if let title = titleLabel.text, let image = imageView.image,
+        if var title = titleLabel.text, let image = imageView.image,
             let data = UIImagePNGRepresentation(image) {
+            if let customTitle = customTitleField.text, customTitle != "" {
+                title = customTitle
+            }
             let newSavedCheer = SavedCheerModel(title: title, imageData: data)
             cheerStore.saveSavedCheer(newSavedCheer)
             saveButton.isEnabled = false
             Helper.displayAlertOnMain("Saved!")
+            
         } else {
             Helper.displayAlertOnMain("Sorry, we could not save this cheer.")
         }
     }
     
     @IBAction func getNewPressed(_ sender: Any) {
+        customTitleField.text = ""
         getNextCheer()
     }
     
