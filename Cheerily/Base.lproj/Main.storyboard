@@ -109,10 +109,10 @@
                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eOR-9K-7xy"/>
+                                </connections>
                             </button>
-                            <connections>
-                                <action selector="logoutPressed:" destination="BYZ-38-t0r" id="VFT-pt-Ewd"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -149,7 +149,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gaC-e7-6hw" id="MJA-6B-c1P">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>

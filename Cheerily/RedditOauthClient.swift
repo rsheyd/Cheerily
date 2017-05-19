@@ -86,6 +86,7 @@ extension WebClient {
         
         guard let refreshToken = refreshToken else {
             print("No refresh token available.")
+            
             return
         }
         
@@ -116,6 +117,39 @@ extension WebClient {
                 completionHandler()
         }
     }
+    
+    func revokeToken(completionHandler: @escaping (_ success: Bool) -> Void) {
+        
+        print("Trying to revoke token.")
+        
+        guard let refreshToken = refreshToken else {
+            print("No refresh token available.")
+            return
+        }
+        
+        let parameters: Parameters = [
+            "token": refreshToken
+        ]
+        
+        Alamofire.request(Constants.redditRevokeTokenUrl, method: .post,
+                          parameters: parameters, encoding: URLEncoding.httpBody)
+            .authenticate(user: Constants.redditClientId, password: "")
+            .response { response in
+                if let httpStatusCode = response.response?.statusCode,
+                    httpStatusCode == 204 {
+                        print("HTTP Status Code: \(httpStatusCode)")
+                        print("Token revoked.")
+                        UserDefaults.standard.removeObject(forKey: "refreshToken")
+                        self.refreshToken = nil
+                        completionHandler(true)
+                } else {
+                    print("Invalid response/Http status code was not 204.")
+                    completionHandler(false)
+                    return
+                }
+        }
+    }
+
     
     func checkForToken(completionHandler: @escaping (_ exists: Bool) -> Void) {
         if let accessToken = UserDefaults.standard.value(forKey: "accessToken") as? String,

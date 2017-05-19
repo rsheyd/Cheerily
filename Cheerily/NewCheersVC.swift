@@ -31,6 +31,14 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
     // MARK: - UI AND APP STATE
     
     @IBAction func logoutPressed(_ sender: Any) {
+        print("Logout pressed.")
+        webClient.revokeToken { success in
+            if success {
+                Helper.displayAlertOnMain("You have successfully revoked Cheerily's Reddit authorization and logged out.")
+            } else {
+                Helper.displayAlertOnMain("Sorry, there was an issue logging you out of Reddit. Please try later.")
+            }
+        }
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
