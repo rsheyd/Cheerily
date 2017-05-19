@@ -15,8 +15,8 @@ let kCloseSafariViewControllerNotification = "kCloseSafariViewControllerNotifica
 class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
 
     var svc: SFSafariViewController!
-    let webClient = WebClient.sharedInstance()
-    let cheerStore = CheerStore.sharedInstance()
+    let webClient = WebClient.sharedInstance
+    let cheerStore = CheerStore.sharedInstance
     var coreCheers: [NSManagedObject] = []
     var nextPhotoIndex = 0
     

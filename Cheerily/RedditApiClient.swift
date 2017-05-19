@@ -64,7 +64,7 @@ extension WebClient {
                 }
                 print("New cheers count: \(cheers.count)")
                 print(cheers.last!.url)
-                CheerStore.sharedInstance().loadCoreCheers()
+                CheerStore.sharedInstance.loadCoreCheers()
                 completionHandler()
         }
     }

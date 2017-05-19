@@ -11,6 +11,8 @@ import Alamofire
 
 class WebClient: NSObject {
     
+    static let sharedInstance = WebClient()
+    
     var tempState: String?
     var authCode: String?
     var accessToken: String?
@@ -43,12 +45,5 @@ class WebClient: NSObject {
                 completionHandler(true, data)
             }
         }
-    }
-    
-    class func sharedInstance() -> WebClient {
-        struct Singleton {
-            static var sharedInstance = WebClient()
-        }
-        return Singleton.sharedInstance
     }
 }

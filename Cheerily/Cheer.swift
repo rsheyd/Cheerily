@@ -76,7 +76,7 @@ struct Cheer {
     
     static func alreadySaved(_ newCheer: Cheer) -> Bool {
         let newPermalink = newCheer.permalink
-        guard let foundCheers = CheerStore.sharedInstance().loadFromCoreData(entity: "CoreCheer", formatString: "permalink == %@", filterValue: newPermalink) else {
+        guard let foundCheers = CheerStore.sharedInstance.loadFromCoreData(entity: "CoreCheer", formatString: "permalink == %@", filterValue: newPermalink) else {
             print("Could not load cheers filtered by permalink.")
             return false
         }

@@ -25,7 +25,7 @@ class MySavesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        savedCheers = CheerStore.sharedInstance().loadSavedCheers()
+        savedCheers = CheerStore.sharedInstance.loadSavedCheers()
         tableView.reloadData()
     }
     
@@ -63,13 +63,14 @@ class MySavesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedCheerIndex = indexPath.row
+        tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "toSavedCheer", sender: self)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            CheerStore.sharedInstance().deleteSavedCheer(savedCheers[indexPath.row])
+            CheerStore.sharedInstance.deleteSavedCheer(savedCheers[indexPath.row])
             savedCheers.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {

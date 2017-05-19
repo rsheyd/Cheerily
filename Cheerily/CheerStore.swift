@@ -15,13 +15,7 @@ class CheerStore: NSObject {
     var coreCheers = [NSManagedObject]()
     
     // MARK: Shared Instance
-    
-    class func sharedInstance() -> CheerStore {
-        struct Singleton {
-            static var sharedInstance = CheerStore()
-        }
-        return Singleton.sharedInstance
-    }
+    static let sharedInstance = CheerStore()
     
     func loadCoreCheers() {
         if let jpgCheers = loadFromCoreData(entity: "CoreCheer",
