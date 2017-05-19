@@ -122,10 +122,10 @@
             </objects>
             <point key="canvasLocation" x="1880.8" y="62.518740629685162"/>
         </scene>
-        <!--View Controller-->
+        <!--Saved CheerVC-->
         <scene sceneID="VGU-Ao-HnO">
             <objects>
-                <viewController id="nZ6-H8-I98" sceneMemberID="viewController">
+                <viewController id="nZ6-H8-I98" customClass="SavedCheerVC" customModule="Cheerily" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="j9f-zO-39f"/>
                         <viewControllerLayoutGuide type="bottom" id="PZX-MB-BMS"/>
@@ -148,6 +148,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="K4O-Qq-6k5" id="Yau-yo-Shs"/>
+                        <outlet property="titleLabel" destination="1VB-nH-Wr0" id="00R-jU-xCi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yCg-N9-D7q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

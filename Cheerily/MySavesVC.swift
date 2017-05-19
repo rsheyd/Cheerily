@@ -12,6 +12,7 @@ import CoreData
 class MySavesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var savedCheers: [NSManagedObject] = []
+    var selectedCheerIndex: Int?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -26,6 +27,19 @@ class MySavesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         super.viewDidAppear(animated)
         savedCheers = CheerStore.sharedInstance().loadSavedCheers()
         tableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let savedCheerVC = segue.destination as? SavedCheerVC,
+            let selectedIndex = selectedCheerIndex,
+            let cheerImageData = savedCheers[selectedIndex].value(forKey: "imageData") as? Data else {
+                    print("Segue wrong, index missing, or couldn't load image.")
+                return
+        }
+        
+        savedCheerVC.imageData = cheerImageData
+        savedCheerVC.titleText = savedCheers[selectedIndex]
+            .value(forKey: "title") as? String
     }
     
     // MARK: - UITableViewDataSource
@@ -48,7 +62,8 @@ class MySavesVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     // MARK: - UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        selectedCheerIndex = indexPath.row
+        performSegue(withIdentifier: "toSavedCheer", sender: self)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
