@@ -29,6 +29,9 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
     
     // MARK: - UI AND APP STATE
     
+    @IBAction func logoutPressed(_ sender: Any) {
+    }
+    
     @IBAction func saveButtonPressed(_ sender: Any) {
         if let title = titleLabel.text, let image = imageView.image,
             let data = UIImagePNGRepresentation(image) {
@@ -51,14 +54,6 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
         cheerStore.loadCoreCheers()
         self.coreCheers = cheerStore.coreCheers
         checkRedditToken()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     func enableUI(_ enabled: Bool) {
@@ -108,13 +103,13 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
     }
     
     func setAndCheckNewCheers() {
-        self.coreCheers = self.cheerStore.coreCheers
+        coreCheers = cheerStore.coreCheers
         // if all new cheers were duplicates, do another try
-        if self.coreCheers.count == 0 {
+        if coreCheers.count == 0 {
             print("All new cheers must have been duplicates. Initating new request for cheers.")
-            self.getNextCheer()
+            getNextCheer()
         } else {
-            self.downloadAndSetImage() {}
+            downloadAndSetImage() {}
         }
     }
     
@@ -175,7 +170,7 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
         } else {
             Helper.displayAlertOnMain("Received notification was not a URL.")
         }
-        self.svc.dismiss(animated: true, completion: nil)
+        svc.dismiss(animated: true, completion: nil)
         webClient.requestAccessToken() { success in
             if success {
                 self.getNextCheer()

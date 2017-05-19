@@ -46,7 +46,7 @@
                                 <rect key="frame" x="177" y="323.5" width="20" height="20"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="y8Z-7E-kjh">
-                                <rect key="frame" x="188" y="72" width="0.0" height="90"/>
+                                <rect key="frame" x="16" y="72" width="343" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="7OR-9t-sv0"/>
                                 </constraints>
@@ -74,6 +74,8 @@
                             <constraint firstItem="oal-aG-RHs" firstAttribute="baseline" secondItem="Dzp-c8-zVD" secondAttribute="firstBaseline" id="UgL-ls-hja"/>
                             <constraint firstItem="TsZ-B6-N0a" firstAttribute="centerX" secondItem="110-yf-TS8" secondAttribute="centerX" id="Y7l-Ua-ueH"/>
                             <constraint firstItem="110-yf-TS8" firstAttribute="centerX" secondItem="Dzp-c8-zVD" secondAttribute="centerX" id="Ygd-WG-z4I"/>
+                            <constraint firstItem="y8Z-7E-kjh" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="ZJr-UX-QGl"/>
+                            <constraint firstItem="y8Z-7E-kjh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="cMI-iW-zjy"/>
                             <constraint firstItem="y8Z-7E-kjh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="cke-ll-M2T"/>
                             <constraint firstItem="TsZ-B6-N0a" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="107" id="gS4-Py-iFF"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oal-aG-RHs" secondAttribute="bottom" constant="8" symbolic="YES" id="i6P-02-Rmo"/>
@@ -84,7 +86,18 @@
                             <constraint firstItem="Dzp-c8-zVD" firstAttribute="centerY" secondItem="LRc-8F-Yx9" secondAttribute="centerY" id="vLe-LI-73a"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Cheerily" id="tZK-ra-ZwW"/>
+                    <navigationItem key="navigationItem" title="Cheerily" id="tZK-ra-ZwW">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="NTa-0O-FtL">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JLl-Sq-lsD">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                            </button>
+                            <connections>
+                                <action selector="logoutPressed:" destination="BYZ-38-t0r" id="VFT-pt-Ewd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="110-yf-TS8" id="tNx-Xy-EjB"/>
                         <outlet property="imageView" destination="TsZ-B6-N0a" id="oxP-GM-FRo"/>
