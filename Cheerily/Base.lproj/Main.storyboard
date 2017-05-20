@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Cheerily-->
+        <!--New Cheers-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Cheerily" id="BYZ-38-t0r" customClass="NewCheersVC" customModule="Cheerily" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Cheerily" id="BYZ-38-t0r" userLabel="New Cheers" customClass="NewCheersVC" customModule="Cheerily" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -104,7 +104,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Cheerily" id="tZK-ra-ZwW">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="NTa-0O-FtL">
+                        <barButtonItem key="leftBarButtonItem" id="NTa-0O-FtL">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JLl-Sq-lsD">
                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

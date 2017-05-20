@@ -31,7 +31,6 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
     // MARK: - UI AND APP STATE
     
     @IBAction func logoutPressed(_ sender: Any) {
-        print("Logout pressed.")
         webClient.revokeToken { success in
             if success {
                 Helper.displayAlertOnMain("You have successfully revoked Cheerily's Reddit authorization and logged out.")
@@ -59,7 +58,7 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
     
     @IBAction func getNewPressed(_ sender: Any) {
         customTitleField.text = ""
-        getNextCheer()
+        checkRedditToken()
     }
     
     override func viewDidLoad() {
@@ -87,11 +86,7 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
     
     func getNextCheer() {
         enableUI(false)
-        if coreCheers.count < 1 {
-            webClient.getNewAwws(triedRenewingToken: false) {
-                self.setAndCheckNewCheers()
-            }
-        } else if coreCheers.count > nextPhotoIndex {
+        if coreCheers.count > nextPhotoIndex {
             downloadAndSetImage() {
                 if (self.coreCheers.count - self.nextPhotoIndex) < 5 {
                     print("Last few pic links coming up. Will try to get more.")
@@ -99,8 +94,9 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
                 }
             }
         } else {
-            print("Something went wrong and there are no more picture links. Woops.")
-            Helper.displayAlertOnMain("There was an error. Please restart app.")
+            webClient.getNewAwws(triedRenewingToken: false) {
+                self.setAndCheckNewCheers()
+            }
         }
     }
     
@@ -162,7 +158,7 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
                 print("We have token.")
                 self.getNextCheer()
             } else {
-                Helper.displayAlertOnMain("Before you can use this app, you need to authorize it with Reddit.")
+                Helper.displayAlertOnMain("Before you can use this app, you need to authorize it with Reddit. If you don't have a Reddit account, you can sign up by clicking on the wrench icon in the top-right corner of the following webpage.")
                 self.authWithReddit()
             }
         }
@@ -196,5 +192,7 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
     
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
         controller.dismiss(animated: true, completion: nil)
+        activityIndicator.isHidden = true
+        titleLabel.text = "Please authorize with Reddit by pressing the MOAR PLZ button."
     }
 }

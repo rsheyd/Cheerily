@@ -65,6 +65,7 @@ extension WebClient {
                 guard let accessToken = JSON["access_token"] as? String,
                     let refreshToken = JSON["refresh_token"] as? String else {
                         print("Response JSON did not contain token values.")
+                        completionHandler(false)
                         return
                 }
                 
