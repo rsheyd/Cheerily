@@ -29,6 +29,12 @@ class NewCheersVC: UIViewController, SFSafariViewControllerDelegate {
     
     // MARK: - UI AND APP STATE
     
+    
+    @IBAction func helpPressed(_ sender: Any) {
+        Helper.displayAlertOnMain("Press \"MOAR PLEASE\" to see the next cheer (picture meant to cheer you up). Press \"SAVE\" to save the cheer for later viewing. Press \"MY SAVES\" to view your saved cheers.")
+    }
+    
+    // revoke token action, not used
     @IBAction func logoutPressed(_ sender: Any) {
         webClient.revokeToken { success in
             if success {
